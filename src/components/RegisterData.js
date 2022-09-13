@@ -55,8 +55,5 @@ let RegisterData = async () => {
             </div>
         </Box>
     );
-
-
-
 }
-    export default RegisterData;
+export default RegisterData;
