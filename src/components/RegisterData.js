@@ -17,12 +17,12 @@ import TextField from '@mui/material/TextField';
 //     );
 // };
 
-const userListData = async() = {
-    let res = await axios.get(http49.212.200.1598080apiuserlist);
-    console.log(res);
-    res = res.data;
-    return res;
-};
+// const userListData = async() = {
+//     let res = await axios.get(http49.212.200.1598080apiuserlist);
+//     console.log(res);
+//     res = res.data;
+//     return res;
+// };
 
 const data = { name: "テスト", age: "100" };
 let RegisterData = async () => {
@@ -38,7 +38,7 @@ let RegisterData = async () => {
                 '& .MuiTextField-root': { m: 1, width: '25ch' },
             }}
             noValidate
-            autoComplete="off"d
+            autoComplete="off" d
         >
             <div>
                 <TextField
