@@ -1,8 +1,5 @@
 import React from 'react';
-// import Menu from '..Menu';
-import axios from axios;
-
-import * as React from 'react';
+import axios from "axios";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
@@ -24,7 +21,7 @@ import TextField from '@mui/material/TextField';
 //     return res;
 // };
 
-const data = { name: "テスト", age: "100" };
+const data = { name: "", age: "" };
 let RegisterData = async () => {
     let res = await axios.post("http://49.212.200.159:8080/api/user/add", data);
     console.log(res);
@@ -56,10 +53,10 @@ let RegisterData = async () => {
 
                     />
             </div>
-
         </Box>
     );
 
 
 
+}
     export default RegisterData;
