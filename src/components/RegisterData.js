@@ -50,8 +50,6 @@ let RegisterData = async () => {
                     label="年齢"
                     data age=""
                 />
-
-                    />
             </div>
         </Box>
     );
