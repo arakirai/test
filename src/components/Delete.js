@@ -1,9 +1,12 @@
-
 import * as React from "react";
 import Menu from "../Menu";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
 
 const Delete = async () => {
     let res = await axios.delete("http://49.212.200.159:8080/api/user/delete", data);
@@ -44,6 +47,7 @@ const Delete2 = () => {
                         id="outlined-required"
                         label="ID"
                         defaultValue={data.id}
+                        
                     />
                     <TextField
                         required
@@ -57,6 +61,14 @@ const Delete2 = () => {
                         label="年齢"
                         defaultValue={data.age}
                     />
+                    <Stack direction="row" spacing={2}>
+                        <Button variant="outlined" startIcon={<DeleteIcon />}>
+                            Delete
+                        </Button>
+                        <Button variant="contained" endIcon={<SendIcon />}>
+                            Send
+                        </Button>
+                    </Stack>
                 </div>
             </Box>
         </Menu>
