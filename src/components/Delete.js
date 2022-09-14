@@ -5,11 +5,12 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import axios from "axios";
 
-let Delete = async () => {
+const Delete = async () => {
     let res = await axios.delete("http://49.212.200.159:8080/api/user/delete", data);
     console.log(res);
     res = res.data;
 };
+
 let data = { id: "", name: "", age: "" };
 
 const Delete2 = () => {
@@ -41,19 +42,19 @@ const Delete2 = () => {
                     <TextField
                         required
                         id="outlined-required"
-                        label="Required"
+                        label="ID"
                         defaultValue={data.id}
                     />
                     <TextField
                         required
                         id="outlined-required"
-                        label="Required"
+                        label="名前"
                         defaultValue={data.name}
                     />
                     <TextField
                         required
                         id="outlined-required"
-                        label="Required"
+                        label="年齢"
                         defaultValue={data.age}
                     />
                 </div>

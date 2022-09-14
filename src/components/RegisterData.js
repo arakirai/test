@@ -7,7 +7,7 @@ import Menu from "../Menu";
 
 
 
-let RegisterData = async () => {
+const RegisterData = async () => {
     let res = await axios.post("http://49.212.200.159:8080/api/user/add", data);
     console.log(res);
     res = res.data;
@@ -43,13 +43,13 @@ const RegisterData2 = () => {
                     <TextField
                         required
                         id="outlined-required"
-                        label="Required"
+                        label="名前"
                         defaultValue={data.name}
                     />
                     <TextField
                         required
                         id="outlined-required"
-                        label="Required"
+                        label="年齢"
                         defaultValue={data.age}
                     />
                 </div>
