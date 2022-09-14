@@ -1,35 +1,33 @@
-import React from 'react';
-import axios from "axios";
+
+import * as React from "react";
+import Menu from "../Menu";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Menu from "../Menu";
+import axios from "axios";
 
-
-
-
-let RegisterData = async () => {
-    let res = await axios.post("http://49.212.200.159:8080/api/user/add", data);
+let Delete = async () => {
+    let res = await axios.delete("http://49.212.200.159:8080/api/user/delete", data);
     console.log(res);
     res = res.data;
 };
-let data = { name: "", age: "" };
+let data = { id: "", name: "", age: "" };
 
-const RegisterData2 = () => {
+const Delete2 = () => {
 
 
-    const title = "ユーザ一覧";
+    const title = "ユーザー削除";
 
 
     React.useEffect(() => {
         (async () => {
-            const listData = await RegisterData();
+            const listData = await Delete();
             console.log(listData);
         })();
     }, []);
 
     return (
         <Menu name={title}>
-            <h1>ユーザー登録</h1>
+            <h1>ユーザー削除</h1>
 
             <Box
                 component="form"
@@ -40,6 +38,12 @@ const RegisterData2 = () => {
                 autoComplete="off"
             >
                 <div>
+                    <TextField
+                        required
+                        id="outlined-required"
+                        label="Required"
+                        defaultValue={data.id}
+                    />
                     <TextField
                         required
                         id="outlined-required"
@@ -61,4 +65,4 @@ const RegisterData2 = () => {
 
 
 
-export default RegisterData2;
+export default Delete2;
