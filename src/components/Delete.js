@@ -12,6 +12,7 @@ const Delete = async () => {
     let res = await axios.delete("http://49.212.200.159:8080/api/user/delete", data);
     console.log(res);
     res = res.data;
+    
 };
 
 let data = { id: "", name: "", age: "" };
@@ -62,6 +63,7 @@ const Delete2 = () => {
                         defaultValue={data.age}
                     />
                     <Stack direction="row" spacing={2}>
+                        <input type={data.id} placeholder="名前" />
                         <Button variant="outlined" startIcon={<DeleteIcon />}>
                             Delete
                         </Button>

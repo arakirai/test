@@ -4,6 +4,10 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Menu from "../Menu";
 
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
 
 
 
@@ -52,7 +56,17 @@ const RegisterData2 = () => {
                         label="年齢"
                         defaultValue={data.age}
                     />
+                    <Stack direction="row" spacing={2}>
+                        <Button variant="outlined" startIcon={<DeleteIcon />}>
+                            Delete
+                        </Button>
+                        <Button variant="contained" endIcon={<SendIcon />}>
+                            Send
+                        </Button>
+                    </Stack>
+                    
                 </div>
+
             </Box>
         </Menu>
     );
