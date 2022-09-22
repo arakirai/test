@@ -160,11 +160,7 @@ const CustomPaginationActionsTable = () => {
                 <TableCell>{row.Occupation}</TableCell> */}
                 <IconButton aria-label="delete">
                   <DeleteIcon />
-                  
-
-                  
-                </IconButton>
-                
+                </IconButton>         
               </TableRow>
             ))}
 
