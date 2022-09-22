@@ -3,12 +3,12 @@ import axios from "axios";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Menu from "../Menu";
-
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
-
+// import { useSate } from "React";
+// import { SettingsInputComponent } from '@material-ui/icons';
 
 
 const RegisterData = async () => {
@@ -16,13 +16,16 @@ const RegisterData = async () => {
     console.log(res);
     res = res.data;
 };
+
 let data = { name: "", age: "" };
 
+
 const RegisterData2 = () => {
+    const [name, setName] = React.useState();
+    // const [age, setage] = React.useState(0);
 
 
     const title = "ユーザ一覧";
-
 
     React.useEffect(() => {
         (async () => {
@@ -30,6 +33,11 @@ const RegisterData2 = () => {
             console.log(listData);
         })();
     }, []);
+
+
+    const handleChangename = () => {
+        setName(name);
+    };
 
     return (
         <Menu name={title}>
@@ -48,23 +56,31 @@ const RegisterData2 = () => {
                         required
                         id="outlined-required"
                         label="名前"
-                        defaultValue={data.name}
+                        defaultValue={name}
+                        // onClick={handleChangename}
                     />
-                    <TextField
+                    {/* <TextField
                         required
                         id="outlined-required"
                         label="年齢"
                         defaultValue={data.age}
-                    />
+                    /> */}
                     <Stack direction="row" spacing={2}>
-                        <Button variant="outlined" startIcon={<DeleteIcon />}>
+
+                        <Button
+                            variant="outlined"
+                            startIcon={<DeleteIcon />}
+                        >
                             Delete
                         </Button>
-                        <Button variant="contained" endIcon={<SendIcon />}>
-                            Send
+                        <Button
+                            variant="contained"
+                            endIcon={<SendIcon />}>
+                            onClick={handleChangename}
                         </Button>
+
                     </Stack>
-                    
+
                 </div>
 
             </Box>
@@ -76,3 +92,6 @@ const RegisterData2 = () => {
 
 
 export default RegisterData2;
+
+
+

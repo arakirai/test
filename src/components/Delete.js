@@ -12,7 +12,6 @@ const Delete = async () => {
     let res = await axios.delete("http://49.212.200.159:8080/api/user/delete", data);
     console.log(res);
     res = res.data;
-    
 };
 
 let data = { id: "", name: "", age: "" };
@@ -48,7 +47,7 @@ const Delete2 = () => {
                         id="outlined-required"
                         label="ID"
                         defaultValue={data.id}
-                        
+
                     />
                     <TextField
                         required

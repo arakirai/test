@@ -20,6 +20,7 @@ import { styled } from "@mui/material/styles";
 import axios from "axios";
 // import Config from "../config/setting";
 import Menu from "../Menu";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -113,7 +114,7 @@ const CustomPaginationActionsTable = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const title = "ユーザ一覧";
-  const headerList = ['ID','名前','年齢'];
+  const headerList = ['ID','名前','年齢',"削除"];
 
   React.useEffect(() => {
     (async () => {
@@ -136,6 +137,7 @@ const CustomPaginationActionsTable = () => {
     setPage(0);
   };
 
+  
   return (
     <Menu name={title}>
       <TableContainer component={Paper}>
@@ -156,6 +158,13 @@ const CustomPaginationActionsTable = () => {
                 {/* <TableCell>{row.height}</TableCell>
                 <TableCell>{row.gender}</TableCell>
                 <TableCell>{row.Occupation}</TableCell> */}
+                <IconButton aria-label="delete">
+                  <DeleteIcon />
+                  
+
+                  
+                </IconButton>
+                
               </TableRow>
             ))}
 
