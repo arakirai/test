@@ -119,7 +119,7 @@ const userListData = async () => {
 
 
 const userDelete = async () => {
-  let res = await axios.delete('http://49.212.200.159:8080/api/user/delete', { data: { id: '' } });
+  let res = await axios.delete('http://49.212.200.159:8080/api/user/delete', { data: { id: "" } });
   console.log(res.data);
   res = res.data;
   return res;
@@ -127,12 +127,11 @@ const userDelete = async () => {
 
 
 
-
 const CustomPaginationActionsTable = () => {
   const [page, setPage] = React.useState(0);
   const [list, setData] = React.useState();
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [delet, setDelet] = React.useState();
+  const [delet, setDelet] = React.useState([]);
 
 
   const title = "ユーザ一覧";
@@ -146,16 +145,6 @@ const CustomPaginationActionsTable = () => {
     })();
   }, []);
 
-
-
-  // const useEffect = (id) => {
-  //   delete(`${id}`);
-  //   setDelet(
-  //     userDelete.filter((post) => {
-  //       return post.id !== id;
-  //     })
-  //   );
-  // };
 
   React.useEffect(() => {
     (async () => {
@@ -183,9 +172,9 @@ const CustomPaginationActionsTable = () => {
   //   setDelet(delet);
   // }
 
-  const onChangeDelet = (index) => {
+  const onChangeDelet = (id) => {
     const deletedTodoList = [...delet];
-    deletedTodoList.splice(index, 1);
+    deletedTodoList.splice(id, 1);
     setDelet(deletedTodoList);
   };
 
@@ -212,10 +201,7 @@ const CustomPaginationActionsTable = () => {
                 <IconButton
                   // defaultValue={delet}
                   // aria-label="delete"
-                  button onClick={() => onChangeDelet(row.index)} 
-              
-
-                  // onClick={onChangeDelet}
+                  onClick={() => onChangeDelet(row.id)} 
                 >
                   <DeleteIcon />
                 </IconButton>
