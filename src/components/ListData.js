@@ -22,6 +22,8 @@ import axios from "axios";
 import Menu from "../Menu";
 import DeleteIcon from '@mui/icons-material/Delete';
 
+
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#d3d3d3",
@@ -108,19 +110,58 @@ const userListData = async () => {
   return res;
 };
 
+// const userDelete = async () => {
+//   let res = await axios.delete("http://49.212.200.159:8080/api/user/delete");
+//   console.log(res);
+//   res = res.data;
+//   return res;
+// };
+
+
+const userDelete = async () => {
+  let res = await axios.delete('http://49.212.200.159:8080/api/user/delete', { data: { id: '' } });
+  console.log(res.data);
+  res = res.data;
+  return res;
+};
+
+
+
+
 const CustomPaginationActionsTable = () => {
   const [page, setPage] = React.useState(0);
   const [list, setData] = React.useState();
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [delet, setDelet] = React.useState();
+
 
   const title = "ユーザ一覧";
-  const headerList = ['ID','名前','年齢',"削除"];
+  const headerList = ['ID', '名前', '年齢', "削除"];
 
   React.useEffect(() => {
     (async () => {
       const listData = await userListData();
       console.log(listData);
       setData(listData);
+    })();
+  }, []);
+
+
+
+  // const useEffect = (id) => {
+  //   delete(`${id}`);
+  //   setDelet(
+  //     userDelete.filter((post) => {
+  //       return post.id !== id;
+  //     })
+  //   );
+  // };
+
+  React.useEffect(() => {
+    (async () => {
+      const listDatads = await userDelete();
+      console.log(listDatads);
+      setDelet(listDatads)
     })();
   }, []);
 
@@ -137,16 +178,26 @@ const CustomPaginationActionsTable = () => {
     setPage(0);
   };
 
-  
+
+  // const onChangeDelet = () => {
+  //   setDelet(delet);
+  // }
+
+  const onChangeDelet = (index) => {
+    const deletedTodoList = [...delet];
+    deletedTodoList.splice(index, 1);
+    setDelet(deletedTodoList);
+  };
+
   return (
     <Menu name={title}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
           <TableHead>
             <TableRow>
-            {headerList?.map((row) => (
-              <StyledTableCell key={row}>{row}</StyledTableCell>
-            ))}     
+              {headerList?.map((row) => (
+                <StyledTableCell key={row}>{row}</StyledTableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -158,9 +209,16 @@ const CustomPaginationActionsTable = () => {
                 {/* <TableCell>{row.height}</TableCell>
                 <TableCell>{row.gender}</TableCell>
                 <TableCell>{row.Occupation}</TableCell> */}
-                <IconButton aria-label="delete">
+                <IconButton
+                  // defaultValue={delet}
+                  // aria-label="delete"
+                  button onClick={() => onChangeDelet(row.index)} 
+              
+
+                  // onClick={onChangeDelet}
+                >
                   <DeleteIcon />
-                </IconButton>         
+                </IconButton>
               </TableRow>
             ))}
 

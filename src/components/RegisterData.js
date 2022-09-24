@@ -11,53 +11,32 @@ import Stack from '@mui/material/Stack';
 // import { SettingsInputComponent } from '@material-ui/icons';
 
 
-const RegisterData = async (userData) => {
-    let res = await axios.post("http://49.212.200.159:8080/api/user/add", JSON.stringify(userData),{
-        headers: {
-          'content-type': 'application/json',
-        }
-    });
+const RegisterData = async () => {
+    let res = await axios.post("http://49.212.200.159:8080/api/user/add", data);
     console.log(res);
     res = res.data;
-    return res;
 };
 
-const RegisterData2 = () => {
-    // const [data, setData] = React.useState();
-    const [name, setName] = React.useState('');
-    const [age, setAge] = React.useState('');
+let data = { name: "", age: "" };
 
+
+const RegisterData2 = () => {
+    const [name, setName] = React.useState();
     // const [age, setage] = React.useState(0);
+
 
     const title = "ユーザ一覧";
 
-    // React.useEffect(() => {
-    //     (async () => {
-    //         const listData = await RegisterData();
-    //         console.log(listData);
-    //     })();
-    // }, []);
+    React.useEffect(() => {
+        (async () => {
+            const listData = await RegisterData();
+            console.log(listData);
+        })();
+    }, []);
 
-    const onChangeName = (event) => {
-        // console.log(event.target.value);
-        setName(event.target.value);
-    }
 
-    const onChangeAge = (event) => {
-        // console.log(event.target.value);
-        setAge(event.target.value);
-    }
-
-    const sendData = async () => {
-        console.log(name);
-        console.log(age);
-        const userData = {
-            name: name,
-            age: age
-        };
-        const res = await RegisterData(userData);
-        console.log(res);
-        return res.data;
+    const handleChangename = () => {
+        setName(name);
     };
 
     return (
@@ -77,16 +56,7 @@ const RegisterData2 = () => {
                         required
                         id="outlined-required"
                         label="名前"
-                        // defaultValue={name}
-                        onChange={(event) => onChangeName(event)}
-                        // onClick={handleChangename}
-                    />
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="年齢"
-                        // defaultValue={name}
-                        onChange={(event) => onChangeAge(event)}
+                        defaultValue={name}
                         // onClick={handleChangename}
                     />
                     {/* <TextField
@@ -95,15 +65,21 @@ const RegisterData2 = () => {
                         label="年齢"
                         defaultValue={data.age}
                     /> */}
-                    {/* <Stack direction="row" spacing={2}> */}
+                    <Stack direction="row" spacing={2}>
+
+                        <Button
+                            variant="outlined"
+                            startIcon={<DeleteIcon />}
+                        >
+                            Delete
+                        </Button>
                         <Button
                             variant="contained"
-                            endIcon={<SendIcon />}
-                            onClick={sendData}>
-                            送信
+                            endIcon={<SendIcon />}>
+                            onClick={handleChangename}
                         </Button>
 
-                    {/* </Stack> */}
+                    </Stack>
 
                 </div>
 
