@@ -165,14 +165,6 @@ const Menu = (props) => {
                             <ListItemText primary="ユーザ一覧" />
                         </ListItem>
                     </Link>
-                    <Link to="/Delete" className={classes.link}>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <ListIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="削除" />
-                        </ListItem>
-                    </Link>
                 </List>
                 <Divider />
             </Drawer>

@@ -154,6 +154,10 @@ const CustomPaginationActionsTable = () => {
     })();
   }, []);
 
+
+
+  
+
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - list.length) : 0;
@@ -178,6 +182,9 @@ const CustomPaginationActionsTable = () => {
     setDelet(deletedTodoList);
   };
 
+  
+  
+
   return (
     <Menu name={title}>
       <TableContainer component={Paper}>
@@ -199,9 +206,13 @@ const CustomPaginationActionsTable = () => {
                 <TableCell>{row.gender}</TableCell>
                 <TableCell>{row.Occupation}</TableCell> */}
                 <IconButton
-                  // defaultValue={delet}
+                  defaultValue={delet}
                   // aria-label="delete"
                   onClick={() => onChangeDelet(row.id)} 
+                  
+              
+
+                  // onClick={onChangeDelet}
                 >
                   <DeleteIcon />
                 </IconButton>
