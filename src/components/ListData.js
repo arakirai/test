@@ -110,17 +110,22 @@ const userListData = async () => {
   return res;
 };
 
+
+
 // const userDelete = async () => {
-//   let res = await axios.delete("http://49.212.200.159:8080/api/user/delete");
-//   console.log(res);
+//   let res = await axios.delete('http://49.212.200.159:8080/api/user/delete', { data: { id: "" } });
+//   console.log(res.data);
 //   res = res.data;
 //   return res;
 // };
 
-
-const userDelete = async () => {
-  let res = await axios.delete('http://49.212.200.159:8080/api/user/delete', { data: { id: "" } });
-  console.log(res.data);
+const userDelete = async (userData) => {
+  let res = await axios.delete("http://49.212.200.159:8080/api/user/delete", JSON.stringify(userData), {
+    headers: {
+      'content-type': 'application/json',
+    }
+  });
+  console.log(res);
   res = res.data;
   return res;
 };
@@ -131,7 +136,7 @@ const CustomPaginationActionsTable = () => {
   const [page, setPage] = React.useState(0);
   const [list, setData] = React.useState();
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [delet, setDelet] = React.useState([]);
+  const [id, setId] = React.useState([]);
 
 
   const title = "ユーザ一覧";
@@ -148,15 +153,11 @@ const CustomPaginationActionsTable = () => {
 
   React.useEffect(() => {
     (async () => {
-      const listDatads = await userDelete();
-      console.log(listDatads);
-      setDelet(listDatads)
+      const userData = await userDelete();
+      console.log(userData);
+      setId.filter((userData, id) => (userData !== 'id'))
     })();
   }, []);
-
-
-
-  
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -172,18 +173,21 @@ const CustomPaginationActionsTable = () => {
   };
 
 
-  // const onChangeDelet = () => {
-  //   setDelet(delet);
-  // }
-
-  const onChangeDelet = (id) => {
-    const deletedTodoList = [...delet];
-    deletedTodoList.splice(id, 1);
-    setDelet(deletedTodoList);
+  const sendData = async () => {
+    console.log(id);
+    const userData = {
+      id: id
+    };
+    const res = await userDelete(userData);
+    console.log(res);
+    return res.data;
   };
-
   
-  
+  // const onChangeDelet = (id) => {
+  //   const listData = [...delet];
+  //   listData.splice(id, 1);
+  //   setDelet(listData);
+  // };
 
   return (
     <Menu name={title}>
@@ -206,10 +210,9 @@ const CustomPaginationActionsTable = () => {
                 <TableCell>{row.gender}</TableCell>
                 <TableCell>{row.Occupation}</TableCell> */}
                 <IconButton
-                  defaultValue={delet}
+                  // defaultValue={delet}
                   // aria-label="delete"
-                  onClick={() => onChangeDelet(row.id)} 
-                  
+                  onClick={() => sendData(row.id)} 
               
 
                   // onClick={onChangeDelet}
