@@ -11,10 +11,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Routes>
-        <Route path={`/`} element={<ListData />} />
-        <Route path="/list" element={<ListData />} />
-        <Route path={`/add`} element={<RegisterData />} />
-        <Route path={`/*/`} element={<NotFound />} />
+        <Route path={`test/`} element={<ListData />} />
+        <Route path="test/list" element={<ListData />} />
+        <Route path={`test/add`} element={<RegisterData />} />
+        <Route path={`test/*/`} element={<NotFound />} />
       </Routes>
     </BrowserRouter>
     </div>

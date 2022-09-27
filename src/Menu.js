@@ -149,7 +149,7 @@ const Menu = (props) => {
                 </div>
                 <Divider />
                 <List>
-                    <Link to="/add" className={classes.link}>
+                    <Link to="test/add" className={classes.link}>
                         <ListItem button>
                             <ListItemIcon>
                                 <AddIcon />
@@ -157,7 +157,7 @@ const Menu = (props) => {
                             <ListItemText primary="ユーザー登録" />
                         </ListItem>
                     </Link>
-                    <Link to="/list" className={classes.link}>
+                    <Link to="test/list" className={classes.link}>
                         <ListItem button>
                             <ListItemIcon>
                                 <ListIcon />
