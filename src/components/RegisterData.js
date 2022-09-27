@@ -96,17 +96,16 @@ const RegisterData2 = () => {
                         defaultValue={data.age}
                     /> */}
                     {/* <Stack direction="row" spacing={2}> */}
-                    <Button
-                        variant="contained"
-                        endIcon={<SendIcon />}
-                        onClick={sendData}>
-                        送信
-                    </Button>
 
                     {/* </Stack> */}
 
                 </div>
-
+                <Button
+                    variant="contained"
+                    endIcon={<SendIcon />}
+                    onClick={sendData}>
+                    送信
+                </Button>
             </Box>
         </Menu>
     );
