@@ -120,14 +120,14 @@ const userListData = async () => {
 // };
 
 const userDelete = async (userData) => {
-  let res = await axios.delete("http://49.212.200.159:8080/api/user/delete", JSON.stringify(userData), {
+  let res = await axios.delete("http://49.212.200.159:8080/api/user/delete", userData, {
     headers: {
       'content-type': 'application/json',
     }
   });
-  console.log(res);
-  res = res.data;
-  return res;
+  // console.log(res);
+  // res = res.data;
+  // return res;
 };
 
 
