@@ -20,9 +20,7 @@ import { styled } from "@mui/material/styles";
 import axios from "axios";
 // import Config from "../config/setting";
 import Menu from "../Menu";
-import DeleteIcon from '@mui/icons-material/Delete';
-
-
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -94,7 +92,7 @@ const TablePaginationActions = (props) => {
       </IconButton>
     </Box>
   );
-}
+};
 
 TablePaginationActions.propTypes = {
   count: PropTypes.number.isRequired,
@@ -110,8 +108,6 @@ const userListData = async () => {
   return res;
 };
 
-
-
 // const userDelete = async () => {
 //   let res = await axios.delete('http://49.212.200.159:8080/api/user/delete', { data: { id: "" } });
 //   console.log(res.data);
@@ -120,17 +116,19 @@ const userListData = async () => {
 // };
 
 const userDelete = async (userData) => {
-  let res = await axios.delete("http://49.212.200.159:8080/api/user/delete", userData, {
-    headers: {
-      'content-type': 'application/json',
+  let res = await axios.delete(
+    "http://49.212.200.159:8080/api/user/delete",
+    userData,
+    {
+      headers: {
+        "content-type": "application/json",
+      },
     }
-  });
-  // console.log(res);
+  );
+  console.log(res);
   // res = res.data;
   // return res;
 };
-
-
 
 const CustomPaginationActionsTable = () => {
   const [page, setPage] = React.useState(0);
@@ -138,9 +136,8 @@ const CustomPaginationActionsTable = () => {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   // const [id, setId] = React.useState([]);
 
-
   const title = "ユーザ一覧";
-  const headerList = ['ID', '名前', '年齢', "削除"];
+  const headerList = ["ID", "名前", "年齢", "削除"];
 
   React.useEffect(() => {
     (async () => {
@@ -149,8 +146,6 @@ const CustomPaginationActionsTable = () => {
       setData(listData);
     })();
   }, []);
-
-  
 
   // React.useEffect(() => {
   //   (async () => {
@@ -173,13 +168,12 @@ const CustomPaginationActionsTable = () => {
     setPage(0);
   };
 
-
   const sendData = async (id) => {
     console.log(id);
     const userData = {
       data: {
-        id: id
-      }
+        id: id,
+      },
     };
     const res = await userDelete(userData);
 
@@ -191,8 +185,6 @@ const CustomPaginationActionsTable = () => {
     return res.data;
   };
 
-
-
   // const onChangeDelet = (id) => {
   //   const listData = [...delet];
   //   listData.splice(id, 1);
@@ -201,59 +193,65 @@ const CustomPaginationActionsTable = () => {
 
   return (
     <Menu name={title}>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-          <TableHead>
-            <TableRow>
-              {headerList?.map((row) => (
-                <StyledTableCell key={row}>{row}</StyledTableCell>
+      {list ? (
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+            <TableHead>
+              <TableRow>
+                {headerList?.map((row) => (
+                  <StyledTableCell key={row}>{row}</StyledTableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {(rowsPerPage > 0
+                ? list?.slice(
+                  page * rowsPerPage,
+                  page * rowsPerPage + rowsPerPage
+                )
+                : list
+              ).map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell>{row.id}</TableCell>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.age}</TableCell>
+                  <TableCell>
+                    <IconButton onClick={async () => await sendData(row.id)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
               ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {list?.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.id}</TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.age}</TableCell>
-                <TableCell>
-                  <IconButton
-                    onClick={async () => await sendData(row.id)}>
-                    <DeleteIcon />
-                  </IconButton>
-                </TableCell>
-              </TableRow>
-              
-            ))}
 
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 53 * emptyRows }}>
-                <TableCell colSpan={6} />
+              {emptyRows > 0 && (
+                <TableRow style={{ height: 53 * emptyRows }}>
+                  <TableCell colSpan={6} />
+                </TableRow>
+              )}
+            </TableBody>
+            <TableFooter>
+              <TableRow>
+                <TablePagination
+                  rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                  colSpan={3}
+                  count={list?.length || 0}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  SelectProps={{
+                    inputProps: {
+                      "aria-label": "rows per page",
+                    },
+                    native: true,
+                  }}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                  ActionsComponent={TablePaginationActions}
+                />
               </TableRow>
-            )}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[10, 25, { label: "All", value: -1 }]}
-                colSpan={3}
-                count={list?.length || 0}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: {
-                    "aria-label": "rows per page",
-                  },
-                  native: true,
-                }}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
-              />
-            </TableRow>
-          </TableFooter>
-        </Table>
-      </TableContainer>
+            </TableFooter>
+          </Table>
+        </TableContainer>
+      ) : null}
     </Menu>
   );
 };
