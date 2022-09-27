@@ -216,20 +216,14 @@ const CustomPaginationActionsTable = () => {
                 <TableCell>{row.id}</TableCell>
                 <TableCell>{row.name}</TableCell>
                 <TableCell>{row.age}</TableCell>
-                {/* <TableCell>{row.height}</TableCell>
-                <TableCell>{row.gender}</TableCell>
-                <TableCell>{row.Occupation}</TableCell> */}
-                <IconButton
-                  // defaultValue={delet}
-                  // aria-label="delete"
-                  onClick={async () => await sendData(row.id)}
-
-
-                // onClick={onChangeDelet}
-                >
-                  <DeleteIcon />
-                </IconButton>
+                <TableCell>
+                  <IconButton
+                    onClick={async () => await sendData(row.id)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </TableCell>
               </TableRow>
+              
             ))}
 
             {emptyRows > 0 && (

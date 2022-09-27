@@ -6,7 +6,7 @@ import Menu from "../Menu";
 import Button from '@mui/material/Button';
 // import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
-// import Stack from '@mui/material/Stack';
+import Stack from '@mui/material/Stack';
 // import { useSate } from "React";
 // import { SettingsInputComponent } from '@material-ui/icons';
 
@@ -73,39 +73,29 @@ const RegisterData2 = () => {
                 autoComplete="off"
             >
                 <div>
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="名前"
-                        // defaultValue={name}
-                        onChange={(event) => onChangeName(event)}
-                    // onClick={handleChangename}
-                    />
-                    <TextField
-                        required
-                        id="outlined-required"
-                        label="年齢"
-                        // defaultValue={name}
-                        onChange={(event) => onChangeAge(event)}
-                    // onClick={handleChangename}
-                    />
-                    {/* <TextField
-                        required
-                        id="outlined-required"
-                        label="年齢"
-                        defaultValue={data.age}
-                    /> */}
-                    {/* <Stack direction="row" spacing={2}> */}
 
-                    {/* </Stack> */}
-
+                    <Stack direction="row" spacing={2}>
+                        <TextField
+                            required
+                            id="outlined-required"
+                            label="名前"
+                            onChange={(event) => onChangeName(event)}
+                        />
+                        <TextField
+                            required
+                            id="outlined-required"
+                            label="年齢"
+                            onChange={(event) => onChangeAge(event)}
+                        />
+                        <Button 
+                            onClick={sendData}
+                            variant="contained"
+                             endIcon={<SendIcon />}>
+                            登録
+                        </Button>
+                    </Stack>
                 </div>
-                <Button
-                    variant="contained"
-                    endIcon={<SendIcon />}
-                    onClick={sendData}>
-                    送信
-                </Button>
+
             </Box>
         </Menu>
     );
