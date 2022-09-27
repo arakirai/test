@@ -87,10 +87,11 @@ const RegisterData2 = () => {
                             label="年齢"
                             onChange={(event) => onChangeAge(event)}
                         />
-                        <Button 
+                        <Button
+                            style={{ maxWidth: '120px', maxHeight: '70px', minWidth: '120px', minHeight: '40px' }}
                             onClick={sendData}
                             variant="contained"
-                             endIcon={<SendIcon />}>
+                            endIcon={<SendIcon />}>
                             登録
                         </Button>
                     </Stack>
