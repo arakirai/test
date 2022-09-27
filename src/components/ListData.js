@@ -136,7 +136,7 @@ const CustomPaginationActionsTable = () => {
   const [page, setPage] = React.useState(0);
   const [list, setData] = React.useState();
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [id, setId] = React.useState([]);
+  // const [id, setId] = React.useState([]);
 
 
   const title = "ユーザ一覧";
@@ -151,13 +151,13 @@ const CustomPaginationActionsTable = () => {
   }, []);
 
 
-  React.useEffect(() => {
-    (async () => {
-      const userData = await userDelete();
-      console.log(userData);
-      setId.filter((userData, id) => (userData !== 'id'))
-    })();
-  }, []);
+  // React.useEffect(() => {
+  //   (async () => {
+  //     const userData = await userDelete();
+  //     console.log(userData);
+  //     setId.filter((userData, id) => (userData !== 'id'))
+  //   })();
+  // }, []);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -173,16 +173,18 @@ const CustomPaginationActionsTable = () => {
   };
 
 
-  const sendData = async () => {
+  const sendData = async (id) => {
     console.log(id);
     const userData = {
-      id: id
+      data: {
+        id: id
+      }
     };
     const res = await userDelete(userData);
     console.log(res);
     return res.data;
   };
-  
+
   // const onChangeDelet = (id) => {
   //   const listData = [...delet];
   //   listData.splice(id, 1);
@@ -212,10 +214,10 @@ const CustomPaginationActionsTable = () => {
                 <IconButton
                   // defaultValue={delet}
                   // aria-label="delete"
-                  onClick={() => sendData(row.id)} 
-              
+                  onClick={async () => await sendData(row.id)}
 
-                  // onClick={onChangeDelet}
+
+                // onClick={onChangeDelet}
                 >
                   <DeleteIcon />
                 </IconButton>
