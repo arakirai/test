@@ -11,6 +11,7 @@ import Stack from '@mui/material/Stack';
 // import { SettingsInputComponent } from '@material-ui/icons';
 
 
+
 const RegisterData = async (userData) => {
     let res = await axios.post("http://49.212.200.159:8080/api/user/add", JSON.stringify(userData), {
         headers: {
@@ -60,6 +61,8 @@ const RegisterData2 = () => {
         return res.data;
     };
 
+
+    
     return (
         <Menu name={title}>
             <h1>ユーザー登録</h1>
@@ -67,7 +70,7 @@ const RegisterData2 = () => {
             <Box
                 component="form"
                 sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    '& .MuiTextField-root': {  width: '20ch' },
                 }}
                 noValidate
                 autoComplete="off"
@@ -82,13 +85,14 @@ const RegisterData2 = () => {
                             onChange={(event) => onChangeName(event)}
                         />
                         <TextField
+                        
                             required
                             id="outlined-required"
                             label="年齢"
                             onChange={(event) => onChangeAge(event)}
                         />
                         <Button
-                            style={{ maxWidth: '120px', maxHeight: '70px', minWidth: '120px', minHeight: '40px' }}
+                            padding= '3'
                             onClick={sendData}
                             variant="contained"
                             endIcon={<SendIcon />}>
