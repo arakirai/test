@@ -150,6 +150,7 @@ const CustomPaginationActionsTable = () => {
     })();
   }, []);
 
+  
 
   // React.useEffect(() => {
   //   (async () => {
@@ -181,9 +182,16 @@ const CustomPaginationActionsTable = () => {
       }
     };
     const res = await userDelete(userData);
+
+    const listData = await userListData();
+    console.log(listData);
+    setData(listData);
+
     console.log(res);
     return res.data;
   };
+
+
 
   // const onChangeDelet = (id) => {
   //   const listData = [...delet];
