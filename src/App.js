@@ -9,12 +9,12 @@ import NotFound from "./components/NotFound";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path={`test/`} element={<ListData />} />
-        <Route path="test/list" element={<ListData />} />
-        <Route path={`test/add`} element={<RegisterData />} />
-        <Route path={`test/*/`} element={<NotFound />} />
+        <Route path={`/`} element={<ListData />} />
+        <Route path="/list" element={<ListData />} />
+        <Route path={`/add`} element={<RegisterData />} />
+        <Route path={`/*/`} element={<NotFound />} />
       </Routes>
     </BrowserRouter>
     </div>
